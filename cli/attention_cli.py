@@ -11,21 +11,21 @@ simulator's reality. All live in the terminal, real numbers, nothing saved.
 Pipe a script of commands too:
     printf 'charge 0 1\ncharge 1 1\nrun\nattn\nquit\n' | python3 cli/attention_cli.py
 """
-# vendored engine modules live one level up, in engine/
+# repo root on sys.path, so `import engine` resolves
 import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "engine"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 import numpy as np
 
-from routing import (
+from engine.routing import (
     TARGET_HEAD1, TARGET_HEAD2, beta_for_target_weight, neighbor_targets, softmax,
 )
-from block import block_force_general, constructed_block_force, mean_aggregate_force
-from frozen_ffn import (
+from engine.block import block_force_general, constructed_block_force, mean_aggregate_force
+from engine.frozen_ffn import (
     SOFT2, ConstructFFN, build_square, l1_forward, l2_forward, l3_forward,
     per_term_verify, relative_error_report,
 )
-from multi_force import MultiForceParams, MultiForceSimulator
+from engine.multi_force import MultiForceParams, MultiForceSimulator
 
 np.set_printoptions(precision=3, suppress=True)
 

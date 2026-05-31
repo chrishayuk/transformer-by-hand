@@ -14,8 +14,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from frozen_ffn import l1_forward, l2_forward, l3_forward
-from routing import (
+from engine.frozen_ffn import l1_forward, l2_forward, l3_forward
+from engine.routing import (
     SQ, SX, SY, TARGET_HEAD1, TARGET_HEAD2, RoutingHead, build_residual,
     neighbor_targets, softmax,
 )

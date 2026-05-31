@@ -15,18 +15,18 @@ construction's output. Nothing is trained. Nothing is saved.
 Pipe a script of commands too:
     printf 'relu\nrecip\nverify\nquit\n' | python3 cli/ffn_cli.py
 """
-# vendored engine modules live one level up, in engine/
+# repo root on sys.path, so `import engine` resolves
 import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "engine"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 import numpy as np
 
-from frozen_ffn import (
+from engine.frozen_ffn import (
     SOFT2, ConstructFFN, L2Weights, ReluPWL, build_square, l1_forward,
     l2_forward, l3_forward, per_term_verify, relative_error_report,
     relu_multiply,
 )
-from multi_force import MultiForceParams, MultiForceSimulator
+from engine.multi_force import MultiForceParams, MultiForceSimulator
 
 np.set_printoptions(precision=3, suppress=True)
 

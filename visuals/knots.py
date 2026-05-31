@@ -13,17 +13,17 @@ Every curve is the REAL frozen ReluPWL block from engine/frozen_ffn.py.
 Run:  python3 visuals/knots.py
       MPLBACKEND=Agg python3 visuals/knots.py   # headless smoke
 """
-# vendored engine modules live one level up, in engine/
+# repo root on sys.path, so `import engine` resolves
 import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "engine"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 from _kit import ACCENT, BAD, BG, BLUE, FG, GOOD, MUTED, show
 
-from frozen_ffn import SOFT2, L2Weights, relative_error_report
-from multi_force import MultiForceParams, MultiForceSimulator
+from engine.frozen_ffn import SOFT2, L2Weights, relative_error_report
+from engine.multi_force import MultiForceParams, MultiForceSimulator
 
 
 def _real_range(n=4000, seed=7):

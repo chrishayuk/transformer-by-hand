@@ -13,9 +13,9 @@ so the same file smoke-tests and renders a still.
 Run:  python3 visuals/ramp.py
       MPLBACKEND=Agg python3 visuals/ramp.py   # headless / still
 """
-# vendored engine modules live one level up, in engine/
+# repo root on sys.path, so `import engine` resolves
 import sys, pathlib
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "engine"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -23,7 +23,7 @@ from matplotlib.animation import FuncAnimation
 
 from _kit import ACCENT, BG, BLUE, FG, GOOD, MUTED
 
-from frozen_ffn import ReluPWL
+from engine.frozen_ffn import ReluPWL
 
 TARGET = lambda x: x * x
 LO, HI = -3.0, 3.0
